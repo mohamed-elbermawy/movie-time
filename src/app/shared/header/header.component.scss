@@ -1,0 +1,33 @@
+// Colors File
+@import '../../../styles/colors-css';
+
+header {
+  .navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 65px;
+    margin: 0;
+    padding: 0.5rem 1rem;
+    background-color: $bgColorLight;
+    border-bottom: 1px solid $borderNavbarColor;
+
+    &-log {
+      display: block;
+      img {
+        width: 60px;
+      }
+    }
+
+    &-links {
+      display: block;
+      padding: 0;
+      margin: 0;
+      list-style: none;
+      li {
+        display: inline;
+        margin-right: 15px;
+      }
+    }
+  }
+}

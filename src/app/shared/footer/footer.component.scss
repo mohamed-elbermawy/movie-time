@@ -1,0 +1,18 @@
+// Colors File
+@import '../../../styles/colors-css';
+
+footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 65px;
+  margin: 0;
+  padding: 0.5rem 1rem;
+  background-color: $bgColorLight;
+
+  span {
+    span {
+      color: $LogoColor;
+    }
+  }
+}
