@@ -14,3 +14,16 @@ export interface Movie {
   vote_average: number;
   vote_count: number;
 }
+
+export interface Dates {
+  maximum: string;
+  minimum: string;
+}
+
+export interface MovieSchema {
+  page: number;
+  results: Movie[];
+  dates: Dates;
+  total_pages: number;
+  total_results: number;
+}

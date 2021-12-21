@@ -1,13 +1,19 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { map } from 'rxjs/operators';
+import { environment } from '../../environments/environment';
+import { MovieSchema } from '../models/movie';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MoviesService {
+  baseURl = environment.baseURl;
+  api_Key = environment.api_Key;
+
   constructor(private _http: HttpClient) {}
 
-  getMovies() {
-    return this._http.get('https://api.themoviedb.org/3/movie/upcoming?api_key=ffcbc3a6bba038f9d3774f25bc19a239');
+  getMovies(type: string) {
+    return this._http.get<MovieSchema>(`${this.baseURl}/movie/${type}?api_key=${this.api_Key}`).pipe(map((res) => res));
   }
 }

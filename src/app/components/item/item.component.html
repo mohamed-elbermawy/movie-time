@@ -1,0 +1,10 @@
+<a class="movie-item" routerLink="">
+  <div class="movie-item-rating">
+      <i class="material-icons">star</i>
+      <span>{{dataItem?.vote_average}}</span>/10
+  </div>
+  <div class="movie-item-image">
+      <img [src]="'https://image.tmdb.org/t/p/original/' + dataItem?.backdrop_path" alt="{{dataItem?.original_title}}">
+  </div>
+  <div class="movie-item-title">{{dataItem?.original_title}}</div>
+</a>
