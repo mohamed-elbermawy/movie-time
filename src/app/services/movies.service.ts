@@ -13,7 +13,9 @@ export class MoviesService {
 
   constructor(private _http: HttpClient) {}
 
-  getMovies(type: string) {
-    return this._http.get<MovieSchema>(`${this.baseURl}/movie/${type}?api_key=${this.api_Key}`).pipe(map((res) => res));
+  getMovies(type: string, count: number = 12) {
+    return this._http
+      .get<MovieSchema>(`${this.baseURl}/movie/${type}?api_key=${this.api_Key}`)
+      .pipe(map((res) => res.results.slice(0, count)));
   }
 }
