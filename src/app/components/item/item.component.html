@@ -4,7 +4,7 @@
       <span>{{dataItem?.vote_average}}</span>/10
   </div>
   <div class="movie-item-image">
-      <img [src]="'https://image.tmdb.org/t/p/original/' + dataItem?.backdrop_path" alt="{{dataItem?.original_title}}">
+      <img [src]="imageSizes.medium + dataItem?.backdrop_path" alt="{{dataItem?.original_title}}">
   </div>
   <div class="movie-item-title">{{dataItem?.original_title}}</div>
 </a>
