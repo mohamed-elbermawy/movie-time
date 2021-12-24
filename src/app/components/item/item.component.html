@@ -1,4 +1,4 @@
-<a class="movie-item" routerLink="">
+<a class="movie-item" [routerLink]="'/movie/'+dataItem?.id">
   <div class="movie-item-rating">
       <i class="material-icons">star</i>
       <span>{{dataItem?.vote_average}}</span>/10
