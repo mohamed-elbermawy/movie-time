@@ -1,0 +1,35 @@
+@import './../../../styles/colors-css';
+
+:host ::ng-deep{
+    .p-tabview-nav{
+        justify-content: center;
+        li{
+            &.p-highlight .p-tabview-nav-link{
+                background-color: $bgColor;
+            }
+            .p-tabview-nav-link{
+                background-color: $bgColor;
+            }
+        }
+    }
+}
+
+.poster{
+    width: 100%;
+}
+
+.overview{
+    line-height: 1.5;
+}
+
+.stat{
+    display: flex;
+    font-weight: bold;
+    margin-bottom: 15px;
+    .label{
+        width:150px;
+    }
+    .value{
+        color: $primaryColor;
+    }
+}

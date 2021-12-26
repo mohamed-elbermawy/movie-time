@@ -13,6 +13,10 @@ export interface Movie {
   video: boolean;
   vote_average: number;
   vote_count: number;
+  revenue: number;
+  runtime: number;
+  status: string;
+  genres: Genre[];
 }
 
 export interface Dates {
@@ -26,4 +30,9 @@ export interface MovieSchema {
   dates: Dates;
   total_pages: number;
   total_results: number;
+}
+
+export interface Genre {
+  id: number;
+  name: string;
 }

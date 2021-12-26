@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MoviesService } from './../../services/movies.service';
 import { Movie } from './../../models/movie';
+import {IMAGE_SIZES} from './../../constants/image-sizes'
 
 @Component({
   selector: 'app-movie',
@@ -11,6 +12,7 @@ import { Movie } from './../../models/movie';
 export class MovieComponent implements OnInit {
   id: string = '';
   movie: Movie | null = null;
+  imageSizes = IMAGE_SIZES;
   constructor(private route: ActivatedRoute, private _moviesService: MoviesService) {
     this.route.params.subscribe(({ id }) => {
       this.id = id;
