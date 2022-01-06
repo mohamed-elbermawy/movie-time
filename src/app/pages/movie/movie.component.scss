@@ -33,3 +33,23 @@
         color: $primaryColor;
     }
 }
+
+.actor{
+    padding: 10px;
+    img{
+        width: 100%;
+    }
+    span{
+        display: block;
+        text-align: center;
+        margin: 10px 0;
+    }
+}
+
+.cast{
+    display: flex;
+    justify-content: center;
+    .title{
+        color: $primaryColor;
+    }
+}

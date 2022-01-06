@@ -1,10 +1,13 @@
-<a class="movie-item" [routerLink]="'/movie/'+dataItem?.id">
-  <div class="movie-item-rating">
-      <i class="material-icons">star</i>
-      <span>{{dataItem?.vote_average}}</span>/10
-  </div>
-  <div class="movie-item-image">
-      <img [src]="imageSizes.medium + dataItem?.backdrop_path" alt="{{dataItem?.original_title}}">
-  </div>
-  <div class="movie-item-title">{{dataItem?.original_title}}</div>
-</a>
+<ng-container *ngIf="dataItem">
+  <a class="movie-item" (click)="navigate(dataItem.id)">
+    <div class="movie-item-rating">
+        <i class="material-icons">star</i>
+        <span>{{dataItem?.vote_average}}</span>/10
+    </div>
+    <div class="movie-item-image">
+        <img [src]="imageSizes.medium + dataItem?.backdrop_path" alt="{{dataItem?.original_title}}">
+    </div>
+    <div class="movie-item-title">{{dataItem?.original_title}}</div>
+  </a>
+</ng-container>
+

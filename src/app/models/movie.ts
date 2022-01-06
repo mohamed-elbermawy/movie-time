@@ -36,3 +36,36 @@ export interface Genre {
   id: number;
   name: string;
 }
+
+export interface MovieVideoSchema {
+  id: number;
+  results: MovieVideo[];
+}
+
+export interface MovieVideo {
+  iso_639_1: string;
+  iso_3166_1: string;
+  name: string;
+  key: string;
+  site: string;
+  size: number;
+  type: string;
+  official: boolean;
+  published_at: string;
+  id: string;
+}
+
+export interface MovieImagesSchema {
+  backdrops: {
+    file_path: string;
+  }[];
+}
+
+export interface MovieCreditsSchema {
+  cast: MovieCredits[];
+}
+
+export interface MovieCredits {
+  name: string;
+  profile_path: string;
+}

@@ -2,8 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
-import { MovieSchema } from '../models/movie';
-import { Movie } from './../models/movie';
+import { MovieSchema, MovieVideoSchema, Movie, MovieImagesSchema, MovieCreditsSchema } from './../models/movie';
 
 @Injectable({
   providedIn: 'root'
@@ -27,8 +26,30 @@ export class MoviesService {
   }
 
   getMovie(id: string) {
+    return this._http.get<Movie>(`${this.baseURl}/movie/${id}?api_key=${this.api_Key}`).pipe(map((res) => res));
+  }
+
+  getMovieVideos(id: string) {
     return this._http
-      .get<Movie>(`${this.baseURl}/movie/${id}?api_key=${this.api_Key}`)
+      .get<MovieVideoSchema>(`${this.baseURl}/movie/${id}/videos?api_key=${this.api_Key}`)
+      .pipe(map((res) => res.results));
+  }
+
+  getMovieImages(id: string) {
+    return this._http
+      .get<MovieImagesSchema>(`${this.baseURl}/movie/${id}/images?api_key=${this.api_Key}`)
       .pipe(map((res) => res));
+  }
+
+  getMovieCredits(id: string) {
+    return this._http
+      .get<MovieCreditsSchema>(`${this.baseURl}/movie/${id}/credits?api_key=${this.api_Key}`)
+      .pipe(map((res) => res));
+  }
+
+  getSimilarMovies(id: string) {
+    return this._http
+      .get<MovieSchema>(`${this.baseURl}/movie/${id}/similar?api_key=${this.api_Key}`)
+      .pipe(map((res) => res.results.slice(0, 6)));
   }
 }
