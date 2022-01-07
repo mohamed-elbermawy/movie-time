@@ -2,7 +2,14 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
-import { MovieSchema, MovieVideoSchema, Movie, MovieImagesSchema, MovieCreditsSchema } from './../models/movie';
+import {
+  MovieSchema,
+  MovieVideoSchema,
+  Movie,
+  MovieImagesSchema,
+  MovieCreditsSchema,
+  GenresScema
+} from './../models/movie';
 
 @Injectable({
   providedIn: 'root'
@@ -19,9 +26,10 @@ export class MoviesService {
       .pipe(map((res) => res.results.slice(0, count)));
   }
 
-  SearchMovie(type: string, page: number = 1) {
+  SearchMovie(type: string, page: number, searchValue?: string) {
+    const uri = searchValue ? '/search/movie' : `/movie/${type}`;
     return this._http
-      .get<MovieSchema>(`${this.baseURl}/movie/${type}?api_key=${this.api_Key}&page=${page}`)
+      .get<MovieSchema>(`${this.baseURl}${uri}?api_key=${this.api_Key}&page=${page}&query=${searchValue}`)
       .pipe(map((res) => res.results));
   }
 
@@ -51,5 +59,17 @@ export class MoviesService {
     return this._http
       .get<MovieSchema>(`${this.baseURl}/movie/${id}/similar?api_key=${this.api_Key}`)
       .pipe(map((res) => res.results.slice(0, 6)));
+  }
+
+  getMoviesGenres() {
+    return this._http
+      .get<GenresScema>(`${this.baseURl}/genre/movie/list?api_key=${this.api_Key}`)
+      .pipe(map((res) => res));
+  }
+
+  getGenre(genreID: string, page: number = 1) {
+    return this._http
+      .get<MovieSchema>(`${this.baseURl}/discover/movie?with_genres=${genreID}&api_key=${this.api_Key}&page=${page}`)
+      .pipe(map((res) => res.results));
   }
 }

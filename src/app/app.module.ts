@@ -19,6 +19,8 @@ import { ItemsBannerComponent } from './components/items-banner/items-banner.com
 import { ItemComponent } from './components/item/item.component';
 import { MovieComponent } from './pages/movie/movie.component';
 import { MovieVideoComponent } from './components/movie-video/movie-video.component';
+import { GenresComponent } from './pages/genres/genres.component';
+import { InputTextModule } from 'primeng/inputtext';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,8 @@ import { MovieVideoComponent } from './components/movie-video/movie-video.compon
     ItemsBannerComponent,
     ItemComponent,
     MovieComponent,
-    MovieVideoComponent
+    MovieVideoComponent,
+    GenresComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +44,8 @@ import { MovieVideoComponent } from './components/movie-video/movie-video.compon
     PaginatorModule,
     TabViewModule,
     ImageModule,
-    CarouselModule
+    CarouselModule,
+    InputTextModule
   ],
   providers: [],
   bootstrap: [AppComponent]

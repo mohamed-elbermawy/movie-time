@@ -69,3 +69,7 @@ export interface MovieCredits {
   name: string;
   profile_path: string;
 }
+
+export interface GenresScema{
+  genres: Genre[];
+}
