@@ -46,7 +46,7 @@ jobs:
     steps:
       - name: Checkout your repository
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-        uses: actions/checkout@production
+        uses: actions/checkout@main
         
       - name: Download production artifact
         uses: actions/download-artifact@main
