@@ -8,16 +8,24 @@ import { MoviesService } from './../../services/movies.service';
   styleUrls: ['./genres.component.scss']
 })
 export class GenresComponent implements OnInit {
-  genres: Genre[] = [];
+  MoviesGenres: Genre[] = [];
+  TVShowsGenres: Genre[] = [];
   constructor(private moviesService: MoviesService) {}
 
   ngOnInit(): void {
     this.getMoviesGenres();
+    this.getTVShowsGenres();
   }
 
   getMoviesGenres() {
     this.moviesService.getMoviesGenres().subscribe((res) => {
-      this.genres = res.genres;
+      this.MoviesGenres = res.genres;
+    });
+  }
+
+  getTVShowsGenres() {
+    this.moviesService.getTVShowsGenres().subscribe((res) => {
+      this.TVShowsGenres = res.genres;
     });
   }
 }

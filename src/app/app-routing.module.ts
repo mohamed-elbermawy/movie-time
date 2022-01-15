@@ -4,6 +4,7 @@ import { GenresComponent } from './pages/genres/genres.component';
 import { HomeComponent } from './pages/home/home.component';
 import { MovieComponent } from './pages/movie/movie.component';
 import { MoviesComponent } from './pages/movies/movies.component';
+import { TVShowsComponent } from './pages/tv shows/tvshows.component';
 
 const routes: Routes = [
   {
@@ -15,8 +16,16 @@ const routes: Routes = [
     component: MoviesComponent
   },
   {
+    path: 'tvshows',
+    component: TVShowsComponent
+  },
+  {
     path: 'movies/genres/:genreid',
     component: MoviesComponent
+  },
+  {
+    path: 'tvshows/genres/:genreid',
+    component: TVShowsComponent
   },
   {
     path: 'genres',
@@ -34,6 +43,6 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+exports: [RouterModule]
 })
 export class AppRoutingModule {}

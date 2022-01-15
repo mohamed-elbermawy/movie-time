@@ -20,6 +20,7 @@ import { ItemComponent } from './components/item/item.component';
 import { MovieComponent } from './pages/movie/movie.component';
 import { MovieVideoComponent } from './components/movie-video/movie-video.component';
 import { GenresComponent } from './pages/genres/genres.component';
+import { TVShowsComponent } from './pages/tv shows/tvshows.component';
 import { InputTextModule } from 'primeng/inputtext';
 
 @NgModule({
@@ -34,7 +35,8 @@ import { InputTextModule } from 'primeng/inputtext';
     ItemComponent,
     MovieComponent,
     MovieVideoComponent,
-    GenresComponent
+    GenresComponent,
+    TVShowsComponent
   ],
   imports: [
     BrowserModule,

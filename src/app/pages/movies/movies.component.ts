@@ -27,7 +27,7 @@ export class MoviesComponent implements OnInit {
     if (this.genreID == '') {
       this.getMovies('top_rated', 1);
     } else {
-      this.getGenre(this.genreID, 1);
+      this.getMoviesGenre(this.genreID, 1);
     }
   }
 
@@ -37,8 +37,8 @@ export class MoviesComponent implements OnInit {
     });
   }
 
-  getGenre(genreID: string, page: number) {
-    this.movieService.getGenre(genreID, page).subscribe((res) => {
+  getMoviesGenre(genreID: string, page: number) {
+    this.movieService.getMoviesGenre(genreID, page).subscribe((res) => {
       this.movies = res;
     });
   }
@@ -50,7 +50,7 @@ export class MoviesComponent implements OnInit {
       if (this.searchValue) {
         this.getMovies('top_rated', event.page + 1, this.searchValue);
       } else {
-        this.getGenre(this.genreID, event.page + 1);
+        this.getMoviesGenre(this.genreID, event.page + 1);
       }
     }
   }

@@ -8,7 +8,8 @@ import {
   Movie,
   MovieImagesSchema,
   MovieCreditsSchema,
-  GenresScema
+  GenresScema,
+  TVShowsSchema
 } from './../models/movie';
 
 @Injectable({
@@ -67,9 +68,26 @@ export class MoviesService {
       .pipe(map((res) => res));
   }
 
-  getGenre(genreID: string, page: number = 1) {
+  getMoviesGenre(genreID: string, page: number = 1) {
     return this._http
       .get<MovieSchema>(`${this.baseURl}/discover/movie?with_genres=${genreID}&api_key=${this.api_Key}&page=${page}`)
+      .pipe(map((res) => res.results));
+  }
+
+  getTVShowsGenres() {
+    return this._http.get<GenresScema>(`${this.baseURl}/genre/tv/list?api_key=${this.api_Key}`).pipe(map((res) => res));
+  }
+
+  getTVShowsGenre(genreID: string, page: number = 1) {
+    return this._http
+      .get<TVShowsSchema>(`${this.baseURl}/discover/tv?with_genres=${genreID}&api_key=${this.api_Key}&page=${page}`)
+      .pipe(map((res) => res.results));
+  }
+
+  getTVShowsMovies(type: string, page: number, searchValue?: string) {
+    const uri = searchValue ? '/search/tv' : `/tv/${type}`;
+    return this._http
+      .get<TVShowsSchema>(`${this.baseURl}${uri}?api_key=${this.api_Key}&page=${page}&query=${searchValue}`)
       .pipe(map((res) => res.results));
   }
 }

@@ -10,14 +10,21 @@ import { Router } from '@angular/router';
 })
 export class ItemComponent implements OnInit {
   @Input() dataItem: Movie | null = null;
+  @Input() IsTVShows: boolean = false;
   readonly imageSizes = IMAGE_SIZES;
   constructor(private router: Router) {}
 
   ngOnInit(): void {}
 
   navigate(id: number): void {
-    this.router.navigate([`/movie/${id}`]).then(() => {
-      window.location.reload();
-    });
+    if (this.IsTVShows) {
+      this.router.navigate([`/tv/${id}`]).then(() => {
+        window.location.reload();
+      });
+    } else {
+      this.router.navigate([`/movie/${id}`]).then(() => {
+        window.location.reload();
+      });
+    }
   }
 }
