@@ -1,0 +1,65 @@
+# This is a basic workflow to help you get started with Actions
+
+name: build and deploy
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the main branch
+  push:
+    branches: [ production ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    name: Buuid
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      
+      - name: Checksout your repository
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+        uses: actions/checkout@production
+
+      # Runs a set of commands using the runners shell
+      - name: Install depenencies
+        run: npm cli
+        
+      - name: Build depenencies
+        run: npm run build
+
+      - name: Archive production artifact
+        uses: actions/upload-artifact@production
+        with:
+          name: dist
+          path: dist
+          
+  deploy:
+    name: Deploy
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checksout your repository
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+        uses: actions/checkout@production
+        
+      - name: Download production artifact
+        uses: actions/download-artifact@production
+        with:
+          name: dist
+          path: dist
+      - name: GitHub Action for Firebase
+        uses: w9jds/firebase-action@v2.0.0
+
+        with:
+          args: deploy --only hosting
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN}}
+        
+    
+    
