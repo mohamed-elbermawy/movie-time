@@ -35,11 +35,6 @@ export interface TVShowsMovie {
   original_name: string;
 }
 
-export interface Dates {
-  maximum: string;
-  minimum: string;
-}
-
 export interface MovieSchema {
   page: number;
   results: Movie[];
@@ -50,9 +45,8 @@ export interface MovieSchema {
 export interface TVShowsSchema {
   page: number;
   results: TVShowsMovie[];
-  dates: Dates;
-  total_pages: number;
   total_results: number;
+  total_pages: number;
 }
 
 export interface Genre {

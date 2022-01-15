@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { pipe } from 'rxjs';
 import { first } from 'rxjs/operators';
+import { GeneralService } from '../../shared/services/general.service';
 import { Movie, TVShowsMovie } from '../../models/movie';
 import { MoviesService } from '../../services/movies.service';
 
@@ -17,7 +18,11 @@ export class TVShowsComponent implements OnInit {
   genreID: string = '';
   searchValue: string | null = null;
 
-  constructor(private movieService: MoviesService, private route: ActivatedRoute) {
+  constructor(
+    private movieService: MoviesService,
+    private route: ActivatedRoute,
+    private generalService: GeneralService
+  ) {
     this.route.params.pipe(first()).subscribe(({ genreid }) => {
       this.genreID = genreid;
     });
@@ -34,13 +39,13 @@ export class TVShowsComponent implements OnInit {
   getTVShowsMovies(type: string, page: number, searchValue?: string) {
     this.movieService.getTVShowsMovies(type, page, searchValue).subscribe((res) => {
       console.log(res, 'rws');
-      this.tvshowsmovies = this.mapTVShowsToMovies(res);
+      this.tvshowsmovies = this.generalService.mapTVShowsToMovies(res);
     });
   }
 
   getTVShowsGenre(genreID: string, page: number) {
     this.movieService.getTVShowsGenre(genreID, page).subscribe((res) => {
-      this.tvshowsmovies = this.mapTVShowsToMovies(res);
+      this.tvshowsmovies = this.generalService.mapTVShowsToMovies(res);
     });
   }
 
@@ -60,32 +65,5 @@ export class TVShowsComponent implements OnInit {
     if (this.searchValue) {
       this.getTVShowsMovies('popular', 1, this.searchValue);
     }
-  }
-
-  mapTVShowsToMovies(res: TVShowsMovie[]): Movie[] {
-    let mappedArr: Movie[] = [];
-    res.forEach((item) => {
-      mappedArr.push({
-        backdrop_path: item.backdrop_path,
-        genre_ids: item.genre_ids,
-        id: item.id,
-        original_language: item.original_language,
-        original_title: item.original_name,
-        overview: item.overview,
-        popularity: item.popularity,
-        poster_path: item.poster_path,
-        title: item.name,
-        vote_average: item.vote_average,
-        vote_count: item.vote_count,
-        release_date: item.first_air_date,
-        adult: false,
-        video: false,
-        revenue: 0,
-        runtime: 0,
-        status: '',
-        genres: []
-      });
-    });
-    return mappedArr;
   }
 }

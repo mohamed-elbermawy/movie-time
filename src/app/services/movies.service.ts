@@ -27,6 +27,12 @@ export class MoviesService {
       .pipe(map((res) => res.results.slice(0, count)));
   }
 
+  getTVShowspopularMovies(type: string, count: number = 12) {
+    return this._http
+      .get<TVShowsSchema>(`${this.baseURl}/tv/${type}?api_key=${this.api_Key}`)
+      .pipe(map((res) => res.results.slice(0, count)));
+  }
+
   SearchMovie(type: string, page: number, searchValue?: string) {
     const uri = searchValue ? '/search/movie' : `/movie/${type}`;
     return this._http
