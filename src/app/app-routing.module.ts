@@ -36,6 +36,10 @@ const routes: Routes = [
     component: MovieComponent
   },
   {
+    path: 'tv/:id',
+    component: MovieComponent
+  },
+  {
     path: '**',
     redirectTo: ''
   }
